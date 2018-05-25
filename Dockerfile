@@ -23,8 +23,8 @@ RUN chown -Rf www-data.www-data /var/log/astpp/
 RUN chown -Rf www-data.www-data /var/www/
 
 RUN cd /usr/src/
-RUN git clone http://devang.nathwani:testingpass@git.inextrix.com/OPEATP/ASTPP
-RUN git clone http://devang.nathwani:testingpass@git.inextrix.com/OPEATP/WEBDEV
+COPY /usr/src/docker-dir/ope/ASTPP /usr/src/
+COPY /usr/src/docker-dir/ope/WEBDEV /usr/src/
 
 RUN cp /usr/src/ASTPP/config/* /var/lib/astpp/
 RUN cp -rf /usr/src/ASTPP/web_interface/astpp/* /var/www/html/astpp/
