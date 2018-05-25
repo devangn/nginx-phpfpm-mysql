@@ -9,8 +9,8 @@ RUN touch /var/log/nginx/astpp_error_log
 RUN touch /var/log/nginx/fs_access_log
 RUN touch /var/log/nginx/fs_error_log
 RUN php5enmod mcrypt
-RUN systemctl restart php5-fpm
-RUN service nginx reload
+RUN /etc/init.d/php5-fpm restart
+RUN /etc/init.d/nginx reload
 
 RUN mkdir -p /var/lib/astpp/
 RUN mkdir -p /var/log/astpp/
@@ -35,10 +35,6 @@ RUN sed -i "s#dbpass = <PASSSWORD>#dbpass = kiiiSjFpI7zxGvxv#g" /var/lib/astpp/a
 RUN sed -i "s#DB_PASSWD=\"<PASSSWORD>\"#DB_PASSWD = \"kiiiSjFpI7zxGvxv\"#g" /var/lib/astpp/astpp.lua
 
 RUN sed -i "s#short_open_tag = Off#short_open_tag = On#g" /etc/php.ini
-RUN systemctl enable nginx
-RUN systemctl enable php5-fpm
-RUN systemctl start mysql
-RUN chkconfig --levels 345 mariadb on
 
 ENTRYPOINT service nginx restart && bash
 ENTRYPOINT service php5-fpm restart && bash
