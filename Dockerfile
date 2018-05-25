@@ -26,13 +26,13 @@ RUN chown -Rf www-data.www-data /var/www/
 RUN cd /usr/src/
 RUN mkdir /usr/src/ASTPP
 RUN mkdir /usr/src/WEBDEV
-COPY /usr/src/docker-dir/ope/ASTPP /usr/src/
-COPY /usr/src/docker-dir/ope/WEBDEV /usr/src/
+COPY ASTPP /usr/src/
+COPY WEBDEV /usr/src/
 
-RUN cp /usr/src/ASTPP/config/* /var/lib/astpp/
-RUN cp -rf /usr/src/ASTPP/web_interface/astpp/* /var/www/html/astpp/
-RUN chown -Rf www-data.www-data /var/www/html/astpp
-RUN cp /usr/src/ASTPP/web_interface/nginx/deb_* /etc/nginx/conf.d/
+COPY ASTPP/config/* /var/lib/astpp/
+COPY ASTPP/web_interface/astpp/* /var/www/html/astpp/
+RUN chown -Rf www-data.www-data /var/www/html/astpp/
+COPY ASTPP/web_interface/nginx/deb_* /etc/nginx/conf.d/
 
 RUN chmod -Rf 755 /var/www/html/astpp
 RUN touch /var/log/astpp/astpp.log
@@ -40,8 +40,6 @@ RUN chown -Rf www-data.www-data /var/log/astpp/astpp.log
 
 RUN sed -i "s#dbpass = <PASSSWORD>#dbpass = kiiiSjFpI7zxGvxv#g" /var/lib/astpp/astpp-config.conf
 RUN sed -i "s#DB_PASSWD=\"<PASSSWORD>\"#DB_PASSWD = \"kiiiSjFpI7zxGvxv\"#g" /var/lib/astpp/astpp.lua
-
-RUN sed -i "s#short_open_tag = Off#short_open_tag = On#g" /etc/php.ini
 
 ENTRYPOINT service nginx restart && bash
 ENTRYPOINT service php5-fpm restart && bash
