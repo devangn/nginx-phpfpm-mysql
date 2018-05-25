@@ -2,7 +2,7 @@ FROM debian:jessie
 RUN apt-get update
 RUN apt-get -o Acquire::Check-Valid-Until=false update
 
-RUN apt-get install -y git curl nginx php5-fpm php5 php5-mcrypt libmyodbc unixodbc-bin php5-dev php5-common php5-cli php5-gd php-pear php5-cli php-apc php5-curl libxml2 libxml2-dev openssl libcurl4-openssl-dev gettext gcc g++
+RUN apt-get install -y git curl nginx php5-fpm php5 php5-mcrypt libmyodbc unixodbc-bin php5-dev php5-mysql php5-common php5-cli php5-gd php-pear php5-cli php-apc php5-curl libxml2 libxml2-dev openssl libcurl4-openssl-dev gettext gcc g++
 
 RUN touch /var/log/nginx/astpp_access_log
 RUN touch /var/log/nginx/astpp_error_log
