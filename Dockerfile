@@ -24,8 +24,10 @@ RUN chown -Rf www-data.www-data /var/log/astpp/
 RUN chown -Rf www-data.www-data /var/www/
 
 RUN cd /usr/src/
-COPY /usr/src/docker-dir/ope/ASTPP /usr/src/
-COPY /usr/src/docker-dir/ope/WEBDEV /usr/src/
+RUN mkdir /usr/src/ASTPP
+RUN mkdir /usr/src/WEBDEV
+ADD /usr/src/docker-dir/ope/ASTPP /usr/src/ASTPP
+ADD /usr/src/docker-dir/ope/WEBDEV /usr/src/WEBDEV
 
 RUN cp /usr/src/ASTPP/config/* /var/lib/astpp/
 RUN cp -rf /usr/src/ASTPP/web_interface/astpp/* /var/www/html/astpp/
