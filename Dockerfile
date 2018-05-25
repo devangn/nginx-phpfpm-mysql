@@ -22,7 +22,7 @@ RUN chown -Rf root.root /var/lib/astpp/
 RUN chown -Rf www-data.www-data /var/log/astpp/
 RUN chown -Rf www-data.www-data /var/www/
 
-RUN CD /usr/src/
+RUN cd /usr/src/
 RUN git clone http://devang.nathwani:testingpass@git.inextrix.com/OPEATP/ASTPP
 RUN git clone http://devang.nathwani:testingpass@git.inextrix.com/OPEATP/WEBDEV
 
